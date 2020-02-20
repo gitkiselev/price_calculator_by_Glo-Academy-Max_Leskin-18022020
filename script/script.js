@@ -41,13 +41,9 @@ function checkboxContent () {
     const answers = [desktopTemplates, adapt, mobileTemplates, editable];
     for(const elem of answers) {
             let content = elem.nextElementSibling.nextElementSibling;
-            //console.log('Элемент контента: ' + content)
-                if(elem.checked) {
-                    content.textContent = 'Да'
-                } else {
-                    content.textContent = 'Нет';
-                }
-    }
+            //console.log(content)
+               elem.checked ? content.textContent = 'Да' : content.textContent = 'Нет';
+    } 
 }
 function showElem(elem) {
     elem.style.display = 'block';
