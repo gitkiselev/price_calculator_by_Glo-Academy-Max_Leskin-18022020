@@ -58,42 +58,85 @@ function hideElem(elem) {
     elem.style.display = 'none';
 }
 
-function dopOptionsString() {
-    //Подключим Яндекс Метрику, Гугл Аналитику и отправку заявок на почту.
-    let str = '';
-    if (metrikaYandex.checked || analyticsGoogle.checked || sendOrder.checked) {
-        str += 'Подключим';
+// function dopOptionsString() {
+//     //Подключим Яндекс Метрику, Гугл Аналитику и отправку заявок на почту.
+//     let str = '';
+//     if (metrikaYandex.checked || analyticsGoogle.checked || sendOrder.checked) {
+//         str += 'Подключим';
 
-        if (metrikaYandex.checked) {
-            str+= ' Яндекс Метрику';
-            if (analyticsGoogle.checked && sendOrder.checked) {
-                str += ', Гугл Аналитику и отправку заявок на почту.';
-                return str;
-            }
+//         if (metrikaYandex.checked) {
+//             str+= ' Яндекс Метрику';
+//             if (analyticsGoogle.checked && sendOrder.checked) {
+//                 str += ', Гугл Аналитику и отправку заявок на почту.';
+//                 return str;
+//             }
 
-            if (analyticsGoogle.checked || sendOrder.checked) {
-                str += ' и';
-            }
-        }
+//             if (analyticsGoogle.checked || sendOrder.checked) {
+//                 str += ' и';
+//             }
+//         }
 
-        if (analyticsGoogle.checked) {
-            str += ' Гугл Аналитику';
+//         if (analyticsGoogle.checked) {
+//             str += ' Гугл Аналитику';
 
-            if (sendOrder.checked) {
-                str += ' и';
-            }
-        }
+//             if (sendOrder.checked) {
+//                 str += ' и';
+//             }
+//         }
 
-        if (sendOrder.checked) {
-            str += ' отправку заявок на почту';
-        }
-        str += '.';
-     }
+//         if (sendOrder.checked) {
+//             str += ' отправку заявок на почту';
+//         }
+//         str += '.';
+//      }
 
      
 
+//     return str;
+// }
+function dopOptionsString2 () {
+    let str = '';
+    let str1;
+    let str2;
+    const dops = [metrikaYandex, analyticsGoogle, sendOrder];
+    const chosen = [];
+    for (const item of dops) {
+        console.log(item.getAttribute('data-answer'));
+        if (item.checked) {
+            chosen.push(item.getAttribute('data-answer'));
+        }
+    }
+    console.log(chosen);
+    
+    if (chosen.length < 2) {
+        str1 =  chosen.slice();
+        str2 = '';
+        str =  str1 + str2;
+    } else {
+        str1 =  (chosen.slice(0, chosen.length - 1)).join(', ');
+        str2 =  chosen.slice(chosen.length - 1).join();
+        str =  str1 + str2;
+    }
+    
+    console.log('str1 ' + str1);
+    
+    console.log('str2 ' + str2);
+    if (chosen.length > 0 && chosen.length < 2) {
+        str = ' Подключим ' + str1 + '.';
+    } else if (chosen.length > 1) {
+        str = ' Подключим ' + str1 + ' и ' + str2 + '.';
+    } else {
+        str = '';
+    }
     return str;
+    //return ((chosen.length > 0 && chosen.length < 2 ) ? (str = ' Подключим ' + str1 + '.') : (str = '  ' + (str1 + ' и ' + str2 + '.'))) || '';
 }
+
+
+
+
+
+
 
 function renderTextContent(total, site, maxDay, minDay) {
 
@@ -117,7 +160,7 @@ function renderTextContent(total, site, maxDay, minDay) {
     Сделаем ${site} ${adapt.checked ?
          ', адаптированный под мобильные устройства и планшеты': ''}.
          ${editable.checked ? 'Установим панель админстратора, чтобы вы могли самостоятельно менять содержание на сайте без разработчика.' : ''}
-        ${dopOptionsString()}
+        ${dopOptionsString2()}
     `;
 
 }
