@@ -109,7 +109,7 @@ function dopOptionsString2 () {
     console.log(chosen);
     
     if (chosen.length < 2) {
-        str1 =  chosen.slice();
+        str1 =  chosen.slice().join();
         str2 = '';
         str =  str1 + str2;
     } else {
