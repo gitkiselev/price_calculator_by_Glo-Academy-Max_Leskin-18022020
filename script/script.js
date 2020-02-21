@@ -68,7 +68,7 @@ function dopOptionsString() {
             str+= ' Яндекс Метрику';
             if (analyticsGoogle.checked && sendOrder.checked) {
                 str += ', Гугл Аналитику и отправку заявок на почту.';
-                return;
+                return str;
             }
 
             if (analyticsGoogle.checked || sendOrder.checked) {
