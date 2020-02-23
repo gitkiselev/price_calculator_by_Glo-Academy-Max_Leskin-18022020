@@ -58,42 +58,6 @@ function hideElem(elem) {
     elem.style.display = 'none';
 }
 
-// function dopOptionsString() {
-//     //Подключим Яндекс Метрику, Гугл Аналитику и отправку заявок на почту.
-//     let str = '';
-//     if (metrikaYandex.checked || analyticsGoogle.checked || sendOrder.checked) {
-//         str += 'Подключим';
-
-//         if (metrikaYandex.checked) {
-//             str+= ' Яндекс Метрику';
-//             if (analyticsGoogle.checked && sendOrder.checked) {
-//                 str += ', Гугл Аналитику и отправку заявок на почту.';
-//                 return str;
-//             }
-
-//             if (analyticsGoogle.checked || sendOrder.checked) {
-//                 str += ' и';
-//             }
-//         }
-
-//         if (analyticsGoogle.checked) {
-//             str += ' Гугл Аналитику';
-
-//             if (sendOrder.checked) {
-//                 str += ' и';
-//             }
-//         }
-
-//         if (sendOrder.checked) {
-//             str += ' отправку заявок на почту';
-//         }
-//         str += '.';
-//      }
-
-     
-
-//     return str;
-// }
 function dopOptionsString2 () {
     let str = '';
     const dops = [...document.querySelectorAll('[data-answer]')];
@@ -141,7 +105,6 @@ function renderTextContent(total, site, maxDay, minDay) {
     `;
 
 }
-
 
 function priceCalculation(elem = {}) {
     let result = 0,
