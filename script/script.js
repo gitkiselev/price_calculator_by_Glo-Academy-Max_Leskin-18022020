@@ -96,47 +96,24 @@ function hideElem(elem) {
 // }
 function dopOptionsString2 () {
     let str = '';
-    let str1;
-    let str2;
-    const dops = [metrikaYandex, analyticsGoogle, sendOrder];
+    const dops = [...document.querySelectorAll('[data-answer]')];
     const chosen = [];
     for (const item of dops) {
-        console.log(item.getAttribute('data-answer'));
         if (item.checked) {
             chosen.push(item.getAttribute('data-answer'));
         }
     }
-    console.log(chosen);
     
-    if (chosen.length < 2) {
-        str1 =  chosen.slice().join();
-        str2 = '';
-        str =  str1 + str2;
-    } else {
-        str1 =  (chosen.slice(0, chosen.length - 1)).join(', ');
-        str2 =  chosen.slice(chosen.length - 1).join();
-        str =  str1 + str2;
-    }
-    
-    console.log('str1 ' + str1);
-    
-    console.log('str2 ' + str2);
+    str = ' Подключим ';
     if (chosen.length > 0 && chosen.length < 2) {
-        str = ' Подключим ' + str1 + '.';
+        str += chosen.slice() + '.';
     } else if (chosen.length > 1) {
-        str = ' Подключим ' + str1 + ' и ' + str2 + '.';
+        str += (chosen.slice(0, chosen.length - 1)).join(', ') + ' и ' + chosen.slice(chosen.length - 1) + '.';
     } else {
         str = '';
     }
     return str;
-    //return ((chosen.length > 0 && chosen.length < 2 ) ? (str = ' Подключим ' + str1 + '.') : (str = '  ' + (str1 + ' и ' + str2 + '.'))) || '';
 }
-
-
-
-
-
-
 
 function renderTextContent(total, site, maxDay, minDay) {
 
@@ -157,7 +134,7 @@ function renderTextContent(total, site, maxDay, minDay) {
     toggleAnswer(editable, editableValue);
 
     calcDescription.textContent = `
-    Сделаем ${site} ${adapt.checked ?
+    Сделаем ${site}${adapt.checked ?
          ', адаптированный под мобильные устройства и планшеты': ''}.
          ${editable.checked ? 'Установим панель админстратора, чтобы вы могли самостоятельно менять содержание на сайте без разработчика.' : ''}
         ${dopOptionsString2()}
